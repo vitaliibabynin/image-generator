@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# pencil scratch exports (keep .pen files, ignore generated previews)
+/designs/images/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
