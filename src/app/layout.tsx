@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Image Generator",
-  description: "Generate images from text prompts or reference images, powered by fal.ai.",
+  title: "Aperture — Image Generator",
+  description: "Frame a scene, then let the model render it. Powered by fal.ai.",
 };
 
 export default function RootLayout({
@@ -25,9 +25,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="light"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => { try { const t = localStorage.getItem('aperture-theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch {} })();`,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-surface-primary text-fg-primary">
+        {children}
+      </body>
     </html>
   );
 }
